@@ -7,15 +7,15 @@ Import-Module Posh-ACME
 Set-PAServer LE_STAGE
 #izlistati komande modula Posh-ACME
 get-command -Module posh-acme
+help New-PACertificate 
 #izlkistati dostupne dns pluginove
 Get-PaPlugin
 #izlistati parametre za ClouDNS plugin
-Get-PAPlugin ClouDNS -Params
+Get-PAPlugin Cloudflare -Params
 
 $pArgs = @{
-    CDUserType = 'auth-id'
-    CDUsername = '70788'
-    CDPassword = (Read-Host "MSNetwork14!" -AsSecureString)
+    CFToken = (''| ConvertTo-SecureString -AsPlainText -Force)
 }
-
-New-PaCertificate -DnsPlugin ClouDNS -Domain igorpuhalo.from.hr -Name "igorpuhalo.from.hr" -Contact "igorpuhalo@hotmail.com" -FriendlyName "igorpuhalo.from.hr" -AcceptTOS -PluginArgs $pArgs
+New-PaCertificate -DnsPlugin Cloudflare -Domain igorpuhalo.from.hr -Name "igorpuhalo.from.hr" -Contact "igorpuhalo@hotmail.com" -FriendlyName "igorpuhalo.from.hr" -AcceptTOS -PluginArgs $pArgs -Verbose
+get-pacertificate -Name "igorpuhalo.from.hr" -Verbose | fl
+submit-renewal -Name "igorpuhalo.from.hr" -Verbose -Force
