@@ -1,13 +1,13 @@
 Start-Transcript -Outputdirectory "C:\Users\igystarmo\Documents"
 #Instalacija modula Posh-ACME
-Install-Module Posh-ACMEYy
+Install-Module Posh-ACME
 #import modula Posh-ACME ako je instaliran
 Import-Module Posh-ACME
 #namjestiti testni server 
 Set-PAServer LE_STAGE
 #izlistati komande modula Posh-ACME
 get-command -Module posh-acme
-help New-PACertificate 
+get-help New-PACertificate
 #izlkistati dostupne dns pluginove
 Get-PaPlugin
 #izlistati parametre za ClouDNS plugin
