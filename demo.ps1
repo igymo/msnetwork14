@@ -11,11 +11,15 @@ get-help New-PACertificate
 #izlkistati dostupne dns pluginove
 Get-PaPlugin
 #izlistati parametre za ClouDNS plugin
+#pogledati parameter plugina
 Get-PAPlugin Cloudflare -Params
-
+#token cloudFlare-a
 $pArgs = @{
     CFToken = (''| ConvertTo-SecureString -AsPlainText -Force)
 }
-New-PaCertificate -DnsPlugin Cloudflare -Domain igorpuhalo.from.hr -Name "igorpuhalo.from.hr" -Contact "igorpuhalo@hotmail.com" -FriendlyName "igorpuhalo.from.hr" -AcceptTOS -PluginArgs $pArgs -Verbose
-get-pacertificate -Name "igorpuhalo.from.hr" -Verbose | fl
+#izdavanje novog certifikata
+New-PaCertificate -DnsPlugin Cloudflare -Domain naziv.domene -Name "bilokoje ime" -Contact "email@domena.com" -FriendlyName "friendly name domene" -AcceptTOS -PluginArgs $pArgs -Verbose
+#izlistati dobiveni certifikat i njegove parameter
+get-pacertificate -Name "nazivdomene" -Verbose | fl
+#renewal certifikata
 submit-renewal -Name "igorpuhalo.from.hr" -Verbose -Force
